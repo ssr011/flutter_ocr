@@ -2,11 +2,20 @@ package com.dynamsoft.flutter_ocr_sdk;
 
 import androidx.annotation.NonNull;
 
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
+
+import io.flutter.embedding.engine.loader.FlutterLoader;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
+import io.flutter.plugin.common.PluginRegistry.Registrar;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 /** FlutterOcrSdkPlugin */
 public class FlutterOcrSdkPlugin implements FlutterPlugin, MethodCallHandler {
@@ -57,29 +66,6 @@ public class FlutterOcrSdkPlugin implements FlutterPlugin, MethodCallHandler {
         });
       }
       break;
-      case "recognizeByBuffer": {
-        final byte[] bytes = call.argument("bytes");
-        final int width = call.argument("width");
-        final int height = call.argument("height");
-        final int stride = call.argument("stride");
-        final int format = call.argument("format");
-        final String template = call.argument("template");
-        final Result r = result;
-        mExecutor.execute(new Runnable() {
-          @Override
-          public void run() {
-            final String results = mOCRManager.recognizeByBuffer(bytes, width, height, stride, format, template);
-            mHandler.post(new Runnable() {
-              @Override
-              public void run() {
-                r.success(results);
-              }
-            });
-
-          }
-        });
-      }
-      break;
       case "loadModelFiles": {
         final String name = call.argument("name");
         final byte[] prototxtBuffer = call.argument("prototxtBuffer");
@@ -91,6 +77,7 @@ public class FlutterOcrSdkPlugin implements FlutterPlugin, MethodCallHandler {
       break;
       case "loadTemplate": {
         final String template = call.argument("template");
+        printStackTrace(template);
         mOCRManager.loadTemplate(template);
         result.success("");
       }

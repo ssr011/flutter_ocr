@@ -108,7 +108,7 @@ class MobileState extends State<Mobile> {
   @override
   void dispose() {
     // Dispose of the controller when the widget is disposed.
-    _controller?.dispose();
+    _controller.dispose();
     super.dispose();
   }
 

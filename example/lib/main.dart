@@ -1,59 +1,28 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
 
-import 'package:flutter/services.dart';
-import 'package:flutter_ocr_sdk/flutter_ocr_sdk.dart';
+import 'mobile.dart';
 
-void main() {
-  runApp(MyApp());
-}
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
+  // Obtain a list of the available cameras on the device.
+  final cameras = await availableCameras();
 
-class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  // Get a specific camera from the list of available cameras.
+  final firstCamera = cameras.first;
 
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion = await FlutterOcrSdk.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  runApp(
+    MaterialApp(
+      title: 'OCR',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: Text("OCR"),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: Mobile(
+          camera: firstCamera,
         ),
       ),
-    );
-  }
+    ),
+  );
 }

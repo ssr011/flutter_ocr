@@ -3,25 +3,23 @@ version '1.0'
 
 buildscript {
     repositories {
-        maven {
-            url "https://download2.dynamsoft.com/maven/dc/aar"
-        }
-        maven {
-            url "https://download2.dynamsoft.com/maven/dlr/aar"
-        }
         google()
         jcenter()
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.0'
-        implementation 'com.dynamsoft:dynamsoftcore:1.0.0@aar'
-        implementation 'com.dynamsoft:dynamsoftlabelrecognizer:2.0.0@aar'
     }
 }
 
 rootProject.allprojects {
     repositories {
+        maven {
+            url "https://download2.dynamsoft.com/maven/dc/aar"
+        }
+        maven {
+            url "https://download2.dynamsoft.com/maven/dlr/aar"
+        }
         google()
         jcenter()
     }
@@ -35,4 +33,9 @@ android {
     defaultConfig {
         minSdkVersion 21
     }
+}
+
+dependencies {
+    implementation 'com.dynamsoft:dynamsoftcore:1.0.0@aar'
+    implementation 'com.dynamsoft:dynamsoftlabelrecognizer:2.0.0@aar'
 }

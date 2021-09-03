@@ -48,24 +48,24 @@ public class OCRManager {
         return ret.toString();
     }
 
-    public String recognizeByBuffer(byte[] bytes, int width, int height, int stride, int format, String templateName) {
-        JSONObject ret = new JSONObject();
-        DLRResult[] results = null;
-        DLRImageData data = new DLRImageData();
-        data.bytes = bytes;
-        data.width = width;
-        data.height = height;
-        data.stride = stride;
-        data.format = format;
-        try {
-            results = mLabelRecognition.recognizeByBuffer(data, templateName);
-            ret = wrapResults(results);
-        } catch (LabelRecognizerException e) {
-//            e.printStackTrace();
-            Log.e(TAG, e.toString());
-        }
-        return ret.toString();
-    }
+//     public String recognizeByBuffer(byte[] bytes, int width, int height, int stride, int format, String templateName) {
+//         JSONObject ret = new JSONObject();
+//         DLRResult[] results = null;
+//         DLRImageData data = new DLRImageData();
+//         data.bytes = bytes;
+//         data.width = width;
+//         data.height = height;
+//         data.stride = stride;
+//         data.format = format;
+//         try {
+//             results = mLabelRecognition.recognizeByBuffer(data, templateName);
+//             ret = wrapResults(results);
+//         } catch (LabelRecognizerException e) {
+// //            e.printStackTrace();
+//             Log.e(TAG, e.toString());
+//         }
+//         return ret.toString();
+//     }
 
     private JSONObject wrapResults(DLRResult[] results) {
         JSONObject jsonObject = new JSONObject();

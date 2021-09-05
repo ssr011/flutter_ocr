@@ -77,7 +77,6 @@ public class FlutterOcrSdkPlugin implements FlutterPlugin, MethodCallHandler {
       break;
       case "loadTemplate": {
         final String template = call.argument("template");
-        printStackTrace(template);
         mOCRManager.loadTemplate(template);
         result.success("");
       }

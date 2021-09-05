@@ -6,17 +6,16 @@
          "Name" : "NumberUppercase"
       }
    ],
-   "LabelRecognitionParameterArray" : [
+   "LabelRecognizerParameterArray" : [
       {
          "BinarizationModes" : [
             {
                "BlockSizeX" : 0,
                "BlockSizeY" : 0,
                "EnableFillBinaryVacancy" : 1,
-               "ImagePreprocessingModesIndex" : -1,
                "LibraryFileName" : "",
                "LibraryParameters" : "",
-               "Mode" : "DLR_BM_LOCAL_BLOCK",
+               "Mode" : "BM_LOCAL_BLOCK",
                "ThreshValueCoefficient" : 10
             }
          ],
@@ -25,21 +24,13 @@
             {
                "LibraryFileName" : "",
                "LibraryParameters" : "",
-               "Mode" : "DLR_GTM_ORIGINAL"
-            }
-         ],
-         "ImagePreprocessingModes" : [
-            {
-               "LibraryFileName" : "",
-               "LibraryParameters" : "",
-               "Mode" : "DLR_IPM_GENERAL"
+               "Mode" : "GTM_ORIGINAL"
             }
          ],
          "LetterHeightRange" : [ 5, 100, 1 ],
-		 "LineStringLengthRange" : [44, 44],
-		 "MaxLineCharacterSpacing" : 100,
+         "LineStringLengthRange" : [44, 44],
+         "MaxLineCharacterSpacing" : 100,
          "LineStringRegExPattern" : "",
-         "LinesCount" : 2,
          "MaxThreadCount" : 4,
          "Name" : "locr",
          "ReferenceRegionNameArray" : [ "DRRegion" ],
@@ -48,7 +39,7 @@
                "LibraryFileName" : "",
                "LibraryParameters" : "",
                "MinImageDimension" : 262144,
-               "Mode" : "DLR_RPM_GENERAL",
+               "Mode" : "RPM_GENERAL",
                "Sensitivity" : 1
             }
          ],
@@ -76,7 +67,7 @@
             "ThirdPoint" : [ 100, 100 ],
             "FourthPoint" : [ 0, 100 ],
             "MeasuredByPercentage" : 1,
-            "SourceType" : "DLR_LST_MANUAL_SPECIFICATION"
+            "SourceType" : "LST_MANUAL_SPECIFICATION"
          },
          "Name" : "DRRegion",
          "TextAreaNameArray" : [ "DTArea" ]
@@ -91,15 +82,13 @@
             {
                "LibraryFileName" : "",
                "LibraryParameters" : "",
-               "Mode" : "DLR_GTM_ORIGINAL"
+               "Mode" : "GTM_ORIGINAL"
             }
          ],
          "LetterHeightRange" : [ 1, 100, 1 ],
          "LineSpecificationNameArray" : ["L1","L2"],
-         "LinesCount" : 2,
          "Name" : "DTArea",
          "SecondPoint" : [ 100, 0 ],
-         "TextAreaNameArray" : null,
          "TextRegExPattern" : "",
          "ThirdPoint" : [ 100, 100 ]
       }

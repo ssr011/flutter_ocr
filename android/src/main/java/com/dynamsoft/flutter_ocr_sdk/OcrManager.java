@@ -2,24 +2,34 @@ package com.dynamsoft.flutter_ocr_sdk;
 
 import android.util.Log;
 
-import com.dynamsoft.dlr.*;
+import com.dynamsoft.dlr.DLRLicenseVerificationListener;
+import com.dynamsoft.dlr.DLRLineResult;
+import com.dynamsoft.dlr.DLRResult;
+import com.dynamsoft.dlr.LabelRecognizer;
+
+import com.dynamsoft.dlr.LabelRecognizerException;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class OCRManager {
     private static String TAG = "OCR";
-    private LabelRecognizer mLabelRecognition;
+    LabelRecognizer mLabelRecognition;
 
     public OCRManager() {
-        mLabelRecognition.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInByb2R1Y3RzIjoyfQ==", new DLRLicenseVerificationListener() {
-            @Override
-            public void DLRLicenseVerificationCallback(boolean isSuccess, Exception error) {
-                if(!isSuccess){
-                    error.printStackTrace();
+        try {
+            mLabelRecognition = new LabelRecognizer();
+            LabelRecognizer.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInByb2R1Y3RzIjoyfQ==", new DLRLicenseVerificationListener() {
+                @Override
+                public void DLRLicenseVerificationCallback(boolean isSuccess, Exception error) {
+                    if(!isSuccess){
+                        error.printStackTrace();
+                    }
                 }
-            }
-        });
+            });
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     // public void setOrganizationID(String id) {
@@ -39,6 +49,7 @@ public class OCRManager {
         JSONObject ret = new JSONObject();
         DLRResult[] results = null;
         try {
+            System.out.println(templateName);
             results = mLabelRecognition.recognizeByFile(fileName, templateName);
             ret = wrapResults(results);
         } catch (LabelRecognizerException e) {
@@ -119,6 +130,7 @@ public class OCRManager {
 
     public void loadTemplate(String content) {
         try {
+            System.out.println(content);
             mLabelRecognition.appendSettingsFromString(content);
         } catch (Exception e) {
             e.printStackTrace();

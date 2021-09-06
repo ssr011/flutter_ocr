@@ -19,7 +19,7 @@ public class OCRManager {
     public OCRManager() {
         try {
             mLabelRecognition = new LabelRecognizer();
-            LabelRecognizer.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInByb2R1Y3RzIjoyfQ==", new DLRLicenseVerificationListener() {
+            LabelRecognizer.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6MTAwNjYwNDA1fQ==", new DLRLicenseVerificationListener() {
                 @Override
                 public void DLRLicenseVerificationCallback(boolean isSuccess, Exception error) {
                     if(!isSuccess){
